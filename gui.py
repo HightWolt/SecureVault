@@ -124,7 +124,7 @@ class LoginWindow(ctk.CTk):
             self.master_password = pwd
             self._failed_attempts = 0
             self.withdraw()
-            self.quit()
+            self.after(100, self.quit)
         except Exception as e:
             self._failed_attempts += 1
             delay = self._get_bruteforce_delay()
@@ -189,7 +189,6 @@ class MainApp(ctk.CTk):
 
             self.unbind_all("<Key>")
             self.unbind_all("<Button>")
-            self.unbind_all("<Motion>")
             self.unbind_all("<Control-Key>")
             self.unbind_all("<Escape>")
 

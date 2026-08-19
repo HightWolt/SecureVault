@@ -39,14 +39,19 @@ def main():
         sys.exit(0)
 
     # --- Главное окно (после успешного входа) ---
-    service = VaultService(login.master_password)
+    master_password = login.master_password
+    login.master_password = None
+
+    service = VaultService(master_password)
     app = MainApp(service)
     app.mainloop()
 
     try:
-        login.destroy()
+        app.destroy()
     except tk.TclError:
         pass
+
+    service.clear_password()
 
     sys.exit(0)
 

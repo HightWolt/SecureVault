@@ -181,3 +181,8 @@ class VaultService:
         for cat in sorted(counts.keys()):
             result.append(f"{cat} ({counts[cat]})")
         return result
+
+    def clear_password(self) -> None:
+        """Очищает мастер-пароль из памяти (вызывать при выходе)"""
+        self._password = ""
+        self._data = {}
